@@ -1,0 +1,14 @@
+what is MERN Stack (Frontend + Backend = Fullstack) ?
+
+M - MongoDB (nosql database)
+E - ExpressJS (For Backend)
+R - ReactJS (Frontend JS Lib.)
+N - NodeJS (For Backend) 
+
+Frontend(Browser)                                               Backend(Server)
+                                                        ---->   
+ReactJS App(send req to server and Handle JSON req)              NodeJS + ExpressJS(Framwork of NodeJS)(Accept the Frontend API req. and get/put data into MONGODB(database) and send to Frontend with JSON Fromate)
+
+why do not connect directly ReactJS to MongoDB ?
+
+you exposing sensitive data in your Frontend code in the Browser such as an Admin panel username and password to access your database and by putting that logic in the Backend and instead you are hiding that sensitive code from pepole who use wesite.

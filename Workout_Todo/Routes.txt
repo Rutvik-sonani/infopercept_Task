@@ -1,0 +1,5 @@
+GET - /API - get all data from database
+POST - /API - insert new data in database
+GET - /API/:id - get specific data from database
+DELETE - /API/:id - delete specific data from database
+PATCH - /API/:id - updates a specific data in database

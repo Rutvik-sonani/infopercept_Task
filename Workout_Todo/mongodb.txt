@@ -1,0 +1,17 @@
+mongoDB is a nosql database.
+it is not use table, it use document which is resemble json objects.
+
+MONGODB Atlas : 
+
+allows us to speed up a database online and have it fully configre and hosted.
+
+Steps : 
+
+go to mongodb.com/atlas/database and create account.
+click on build a database and choose a Free options
+set a Cluster Name and click on create database
+
+set Security Quicksstart -> add username and password
+go to network access -> Add IP Address -> select "Allow access from anywhere"
+
+go to database -> click on "Connect" -> copy connection string.
