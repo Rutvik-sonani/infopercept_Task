@@ -1,0 +1,59 @@
+Laravel is PHP Popolur Framwork and it's latest version is 11.0.
+
+here we create a CRUD Operation using Laravel Framwork.
+
+that Laravel is also an Example of opinionated Framwork.
+
+opinionated Framwork => [Laravel, Django, Angular]
+
+opinionated Framwork => [React, Node, Express and mongoDB]
+
+An opinionated framework is a tool, language, or framework that makes decisions for you in a prescribed way. They can be easier to use and faster to get started with than more flexible options because there's less debate about how things should be done.
+
+Pros of opinionated Framwork : 
+- Best practices are defined up front and usually tried and true.
+- The framework designers have built a "happy path" making development easier and faster.
+- usually includes lots of functionality out-of-the-box.
+
+Cons of opinionated Framwork :
+- if you must do something unusual that is outside the scope of the framework it will require extra work.
+- usually larger framework size.
+- may require opinionated in order to achive required performance.
+
+Laravel is a MVC Architecture. main view files is located at resources/views/welcome.blade.PHP
+
+we have a template engine in Laravel that is called blade and template engine is future of Laravel.
+
+we have a user model is because Laravel has also comes includes with abilities to make authentication out of the box so you can make this login system registering a user login in the user email password etc..
+
+model : app/Models/User.php
+controllers : app/Http/Controllers/Controllers.php
+
+Download 3 Extension for Better Laravel Experience..
+1. Laravel Blade Snippets
+2. Laravel Blade Spacer
+3. Laravel Extra Intellisense
+
+create new table and migration of that.
+
+run this command in terminal..
+
+php artisan make:migration create_products_table --create=products
+
+php artisan make:migration -> to make a new migration
+create_products_table -> file name
+products -> table name
+
+we will add table in the database and create them again.
+php artisan migrate:refresh
+
+--------------
+
+make controllers command...
+php artisan make:controller ProductController --resource --model=Product
+
+----------
+
+Main Blade Layout...
+go to officoal Doc website and serarch there -> blade -> go to basic templates
+

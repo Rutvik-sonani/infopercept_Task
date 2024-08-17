@@ -5,12 +5,23 @@ require('dotenv').config()
 const connectDB = require('./config/db')
 const router = require('./routes')
 
-
 const app = express()
+// app.use(cors());
 app.use(cors({
-    origin : process.env.FRONTEND_URL,
+    origin : "http://localhost:3000",
+    // methods: ['GET','PUT','POST'],
+    // allowedHeaders: ['Content-Type','Authorization'],
     credentials : true
 }))
+
+// Alternatively, handle preflight OPTIONS requests explicitly
+// app.options('*', cors({
+//     origin: "http://localhost:3000",
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     credentials: true
+// }));
+
 app.use(express.json())
 app.use(cookieParser())
 

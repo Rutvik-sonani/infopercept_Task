@@ -9,11 +9,14 @@ const AdminPanel = () => {
     const navigate = useNavigate()
 
 
-    useEffect(()=>{
-        if(user?.role !== ROLE.ADMIN){
-            navigate("/")
+    useEffect(() => {
+        if (user?.role == ROLE.ADMIN) {
+            navigate("/");
         }
-    },[user])
+        // console.log(ROLE.ADMIN);
+    }, [user, navigate]); // Add `navigate` to the dependency array
+
+    console.log(user); // Add this to verify the user state
 
   return (
     <div className='min-h-[calc(100vh-120px)] md:flex hidden'>

@@ -10,6 +10,7 @@ async function UploadProductController(req,res){
         }
     
         const uploadProduct = new productModel(req.body)
+        console.log(req.body);
         const saveProduct = await uploadProduct.save()
 
         res.status(201).json({
