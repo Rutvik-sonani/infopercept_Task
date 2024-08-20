@@ -10,9 +10,14 @@ const AdminPanel = () => {
 
 
     useEffect(() => {
-        if (user?.role == ROLE.ADMIN) {
+        if (user?.role === ROLE.ADMIN) {
+            navigate("/admin-panel");
+            // console.log("User role1 :",user?.role);
+        }else if(user?.role === ROLE.GENERAL){
             navigate("/");
+            // console.log("User role2 :",user?.role);
         }
+        // console.log("User role2 :",user?.role);
         // console.log(ROLE.ADMIN);
     }, [user, navigate]); // Add `navigate` to the dependency array
 

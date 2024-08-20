@@ -52,7 +52,7 @@ const AdminEditProduct = ({
   }
 
   const handleDeleteProductImage = async(index)=>{
-    console.log("image index",index);
+    console.log("image index",index)
     
     const newProductImage = [...data.productImage]
     newProductImage.splice(index,1)

@@ -1,0 +1,51 @@
+
+// const productModel = require("../../models/productModel");
+// const ExcelJS = require('exceljs');
+
+// const exportProductController = async (req, res) => {
+//     try {
+//         // Fetch all products from the database
+//         const products = await productModel.find();
+
+//         // Create a new workbook and add a worksheet
+//         const workbook = new ExcelJS.Workbook();
+//         const worksheet = workbook.addWorksheet('Products');
+
+//         // Define the columns in the worksheet
+//         worksheet.columns = [
+//             { header: 'Product Name', key: 'productName', width: 20 },
+//             { header: 'Brand Name', key: 'brandName', width: 20 },
+//             { header: 'Category', key: 'category', width: 20 },
+//             { header: 'Price', key: 'price', width: 10 },
+//             { header: 'Selling Price', key: 'sellingPrice', width: 15 },
+//             { header: 'Description', key: 'description', width: 30 },
+//         ];
+
+//         // Add product data rows to the worksheet
+//         products.forEach((product) => {
+//             worksheet.addRow({
+//                 productName: product.productName,
+//                 brandName: product.brandName,
+//                 category: product.category,
+//                 price: product.price,
+//                 sellingPrice: product.sellingPrice,
+//                 description: product.description,
+//             });
+//         });
+
+//         // Set the response headers to indicate a file download
+//         res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+//         res.setHeader('Content-Disposition', 'attachment; filename=products.xlsx');
+
+//         // Write the workbook to the response
+//         await workbook.xlsx.write(res);
+        
+//         // End the response
+//         res.end();
+//     } catch (error) {
+//         console.error("Error exporting products:", error);
+//         res.status(500).json({ error: "Failed to export products" });
+//     }
+// };
+
+// module.exports = exportProductController;

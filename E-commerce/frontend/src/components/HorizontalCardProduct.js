@@ -11,12 +11,11 @@ const HorizontalCardProduct = ({ category, heading }) => {
     const [loading, setLoading] = useState(true)
     const loadingList = new Array(13).fill(null)
 
-    const [scroll, setScroll] = useState(0)
     const scrollElement = useRef()
-
     const { fetchUserAddToCart } = useContext(Context)
 
     const handleAddToCart = async (e, id) => {
+        e.preventDefault() // Prevents default action on button click
         await addToCart(e, id)
         fetchUserAddToCart()
     }
@@ -25,29 +24,26 @@ const HorizontalCardProduct = ({ category, heading }) => {
         setLoading(true)
         const categoryProduct = await fetchCategoryWiseProduct(category)
         setLoading(false)
-
-        console.log("horizontal data", categoryProduct.data)
         setData(categoryProduct?.data)
     }
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [category]) // Adding `category` as a dependency
 
     const scrollRight = () => {
         scrollElement.current.scrollLeft += 300
     }
+
     const scrollLeft = () => {
         scrollElement.current.scrollLeft -= 300
     }
 
     return (
         <div className='container mx-auto px-4 my-6 relative'>
-
-            <h2 className='text-2xl font-semibold py-4'>{heading}</h2>
+            <h2 className='text-2xl font-semibold py-4'>{heading || "Product List"}</h2> {/* Default text if heading is missing */}
 
             <div className='flex items-center gap-4 md:gap-6 overflow-scroll scrollbar-none transition-all' ref={scrollElement}>
-
                 <button className='bg-white shadow-md rounded-full p-1 absolute left-0 text-lg hidden md:block' onClick={scrollLeft}><FaAngleLeft /></button>
                 <button className='bg-white shadow-md rounded-full p-1 absolute right-0 text-lg hidden md:block' onClick={scrollRight}><FaAngleRight /></button>
 
@@ -68,9 +64,9 @@ const HorizontalCardProduct = ({ category, heading }) => {
                     ))
                 ) : (
                     data.map((product) => (
-                        <Link key={product._id} to={"product/" + product?._id} className='w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex'>
+                        <Link key={product._id} to={`product/${product?._id}`} className='w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex'>
                             <div className='bg-slate-200 h-full p-4 min-w-[120px] md:min-w-[145px]'>
-                                <img src={product.productImage[0]} className='object-scale-down h-full hover:scale-110 transition-all' />
+                                <img src={product.productImage[0]} alt={product.productName} className='object-scale-down h-full hover:scale-110 transition-all' />
                             </div>
                             <div className='p-4 grid'>
                                 <h2 className='font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black'>{product?.productName}</h2>
@@ -84,9 +80,7 @@ const HorizontalCardProduct = ({ category, heading }) => {
                         </Link>
                     ))
                 )}
-
             </div>
-
         </div>
     )
 }

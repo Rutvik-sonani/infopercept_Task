@@ -29,6 +29,14 @@ const SummaryApi = {
         url : `${backendDomin}/api/upload-product`,
         method : 'post'
     },
+    importProduct: {
+        url: `${backendDomin}/api/import-product`,
+        method: 'POST',
+    },    
+    exportProduct: {
+        url: `${backendDomin}/api/export-products`,
+        method: 'get',
+    },    
     allProduct : {
         url : `${backendDomin}/api/get-product`,
         method : 'get'
@@ -78,6 +86,5 @@ const SummaryApi = {
         method : 'post'
     }
 }
-
 
 export default SummaryApi
