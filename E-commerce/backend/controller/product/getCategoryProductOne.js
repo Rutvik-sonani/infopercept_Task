@@ -11,7 +11,7 @@ const getCategoryProduct = async(req,res)=>{
         const productByCategory = []
 
         for(const category of productCategory){
-            const product = await productModel.findOne({category })
+            const product = await productModel.findOne({ category, status: "Active" });
 
             if(product){
                 productByCategory.push(product)

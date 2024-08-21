@@ -14,7 +14,8 @@ const searchProduct = async(req,res)=>{
                 {
                     category : regex
                 }
-            ]
+            ],
+            status: "Active"
         })
 
 

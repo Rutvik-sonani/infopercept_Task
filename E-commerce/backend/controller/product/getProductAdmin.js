@@ -1,8 +1,8 @@
 const productModel = require("../../models/productModel")
 
-const getProductController = async(req,res)=>{
+const getProductAdminController = async(req,res)=>{
     try{
-        const allProduct = await productModel.find({ status: "Active" }).sort({ createdAt : -1 })
+        const allProduct = await productModel.find().sort({ createdAt : -1 })
 
         res.json({
             message : "All Product",
@@ -21,4 +21,4 @@ const getProductController = async(req,res)=>{
 
 }
 
-module.exports = getProductController
+module.exports = getProductAdminController

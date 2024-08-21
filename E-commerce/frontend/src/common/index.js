@@ -37,10 +37,25 @@ const SummaryApi = {
         url: `${backendDomin}/api/export-products`,
         method: 'get',
     },    
+    bulkProduct: {
+        url: `${backendDomin}/api/bulk-update-products`,
+        method: 'POST',
+    },    
+    
+    
+    //both
     allProduct : {
         url : `${backendDomin}/api/get-product`,
         method : 'get'
     },
+
+    alladminProduct : {
+        url : `${backendDomin}/api/get-product-admin`,
+        method : 'get'
+    },
+
+
+
     updateProduct : {
         url : `${backendDomin}/api/update-product`,
         method  : 'post'

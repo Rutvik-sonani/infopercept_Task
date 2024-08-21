@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import fetchCategoryWiseProduct from '../helpers/fetchCategoryWiseProduct'
 import displayINRCurrency from '../helpers/displayCurrency'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
@@ -20,16 +20,27 @@ const HorizontalCardProduct = ({ category, heading }) => {
         fetchUserAddToCart()
     }
 
-    const fetchData = async () => {
+    // const fetchData = async () => {
+    //     setLoading(true)
+    //     const categoryProduct = await fetchCategoryWiseProduct(category)
+    //     setLoading(false)
+    //     setData(categoryProduct?.data)
+    // }
+
+    // useEffect(() => {
+    //     fetchData()
+    // }, [category]) // Adding `category` as a dependency
+
+    const fetchData = useCallback(async () => {
         setLoading(true)
         const categoryProduct = await fetchCategoryWiseProduct(category)
         setLoading(false)
         setData(categoryProduct?.data)
-    }
+    }, [category])
 
     useEffect(() => {
         fetchData()
-    }, [category]) // Adding `category` as a dependency
+    }, [fetchData]) // Adding `fetchData` as a dependency
 
     const scrollRight = () => {
         scrollElement.current.scrollLeft += 300
@@ -41,7 +52,7 @@ const HorizontalCardProduct = ({ category, heading }) => {
 
     return (
         <div className='container mx-auto px-4 my-6 relative'>
-            <h2 className='text-2xl font-semibold py-4'>{heading || "Product List"}</h2> {/* Default text if heading is missing */}
+            <h2 className='text-2xl font-semibold py-4'>{heading || "Product List"}</h2>
 
             <div className='flex items-center gap-4 md:gap-6 overflow-scroll scrollbar-none transition-all' ref={scrollElement}>
                 <button className='bg-white shadow-md rounded-full p-1 absolute left-0 text-lg hidden md:block' onClick={scrollLeft}><FaAngleLeft /></button>

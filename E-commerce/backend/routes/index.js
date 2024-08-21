@@ -2,6 +2,7 @@ const express = require('express')
 
 const router = express.Router()
 
+const bulkUpdateProductController = require('../controller/product/bulkUpdateProductController');
 const exportProductController = require('../controller/product/exportProductController');
 const userSignUpController = require("../controller/user/userSignUp")
 const userSignInController = require('../controller/user/userSignIn')
@@ -24,6 +25,7 @@ const deleteAddToCartProduct = require('../controller/user/deleteAddToCartProduc
 const searchProduct = require('../controller/product/searchProduct')
 const filterProductController = require('../controller/product/filterProduct')
 const importProductController = require('../controller/product/importProductController');
+const getProductAdminController = require('../controller/product/getProductAdmin');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });  // Temporary storage location
 
@@ -37,10 +39,12 @@ router.get("/all-user",authToken,allUsers)
 router.post("/update-user",authToken,updateUser)
 router.post('/import-product', authToken, upload.single('file'), importProductController);
 router.get('/export-products', authToken, exportProductController);
+router.post('/bulk-update-products', authToken, bulkUpdateProductController);
 
 //product
 router.post("/upload-product",authToken,UploadProductController)
 router.get("/get-product",getProductController)
+router.get("/get-product-admin",getProductAdminController)
 router.post("/update-product",authToken,updateProductController)
 router.get("/get-categoryProduct",getCategoryProduct)
 router.post("/category-product",getCategoryWiseProduct)
