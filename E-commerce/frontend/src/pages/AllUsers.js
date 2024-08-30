@@ -4,6 +4,8 @@ import { toast } from 'react-toastify'
 import moment from 'moment'
 import { MdModeEdit } from "react-icons/md";
 import ChangeUserRole from '../components/ChangeUserRole';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 const AllUsers = () => {
     const [allUser,setAllUsers] = useState([])
@@ -16,6 +18,7 @@ const AllUsers = () => {
     })
 
     const fetchAllUsers = async() =>{
+        NProgress.start();
         const fetchData = await fetch(SummaryApi.allUser.url,{
             method : SummaryApi.allUser.method,
             credentials : 'include'
@@ -25,10 +28,12 @@ const AllUsers = () => {
 
         if(dataResponse.success){
             setAllUsers(dataResponse.data)
+            NProgress.done();
         }
 
         if(dataResponse.error){
             toast.error(dataResponse.message)
+            NProgress.done();
         }
 
     }

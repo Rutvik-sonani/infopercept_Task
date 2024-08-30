@@ -20,6 +20,8 @@ function App() {
         credentials : 'include'
       })
 
+      
+
       const dataApi = await dataResponse.json()
 
       if(dataApi.success){

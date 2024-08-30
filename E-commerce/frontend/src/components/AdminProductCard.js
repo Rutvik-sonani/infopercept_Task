@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { format } from 'date-fns';
 import { MdModeEditOutline } from 'react-icons/md';
 import AdminEditProduct from './AdminEditProduct';
 import displayINRCurrency from '../helpers/displayCurrency';
@@ -36,6 +37,9 @@ const AdminProductCard = ({ data, fetchdata, onProductSelect, isSelected }) => {
         <h1 className='text-ellipsis line-clamp-2'>{data.productName}</h1>
         <p className='font-semibold'>
           {displayINRCurrency(data.sellingPrice)}
+        </p>
+        <p>
+          {format(data.createdAt,'yyyy/MM/dd kk:mm:ss')}
         </p>
       </div>
 

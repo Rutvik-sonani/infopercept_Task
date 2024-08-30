@@ -27,6 +27,7 @@ const filterProductController = require('../controller/product/filterProduct')
 const importProductController = require('../controller/product/importProductController');
 const getProductAdminController = require('../controller/product/getProductAdmin');
 const multer = require('multer');
+const FackProductController = require('../controller/product/FackProduct');
 const upload = multer({ dest: 'uploads/' });  // Temporary storage location
 
 router.post("/signup",userSignUpController)
@@ -43,6 +44,9 @@ router.post('/bulk-update-products', authToken, bulkUpdateProductController);
 
 //product
 router.post("/upload-product",authToken,UploadProductController)
+//fack product
+router.post("/fack-product",authToken,FackProductController)
+
 router.get("/get-product",getProductController)
 router.get("/get-product-admin",getProductAdminController)
 router.post("/update-product",authToken,updateProductController)

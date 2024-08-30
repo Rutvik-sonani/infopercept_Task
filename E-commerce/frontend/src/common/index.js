@@ -32,7 +32,13 @@ const SummaryApi = {
     importProduct: {
         url: `${backendDomin}/api/import-product`,
         method: 'POST',
-    },    
+    },  
+    
+    FackProduct: {
+        url: `${backendDomin}/api/fack-product`,
+        method: 'POST',
+    },  
+
     exportProduct: {
         url: `${backendDomin}/api/export-products`,
         method: 'get',
@@ -50,7 +56,7 @@ const SummaryApi = {
     },
 
     alladminProduct : {
-        url : `${backendDomin}/api/get-product-admin`,
+        url : `${backendDomin}/api/get-product-admin/`,
         method : 'get'
     },
 
