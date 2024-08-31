@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import { MdModeEditOutline } from 'react-icons/md';
+import { MdModeEditOutline,MdDownload } from 'react-icons/md';
 import AdminEditProduct from './AdminEditProduct';
 import displayINRCurrency from '../helpers/displayCurrency';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
 
 const AdminProductCard = ({ data, fetchdata, onProductSelect, isSelected }) => {
   const [editProduct, setEditProduct] = useState(false);
 
-  // Monitor the status of the product and select it if it's inactive
   useEffect(() => {
     if (data.status === 'Inactive' && !isSelected) {
       handleCheckboxChange();
     }else if (data.status === 'Active' && isSelected) {
-      // Automatically uncheck the checkbox if the status is 'Active'
       handleCheckboxChange(false);
     }
-
-    
-
-  }, [data.status]); // Effect runs whenever data.status changes
+  }, [data.status]); 
 
   const handleCheckboxChange = () => {
     if (typeof onProductSelect === 'function') {
@@ -26,6 +24,29 @@ const AdminProductCard = ({ data, fetchdata, onProductSelect, isSelected }) => {
     } else {
       console.error('onProductSelect is not a function');
     }
+  };
+
+  const handleDownloadPDF = () => {
+    const doc = new jsPDF();
+
+    const tableColumn = ["Field", "Value"];
+    const tableRows = [
+        ["Product Name", data.productName],
+        ["Selling Price", displayINRCurrency(data.sellingPrice)],
+        ["Brand Name",data.brandName],
+        ["Category",data.category],
+        ["Status", data.status],
+        ["Uploaded Time",data.createdAt],
+        ["Product Image",data.productImage],
+    ];
+
+    doc.autoTable({
+        head: [tableColumn],
+        body: tableRows,
+        startY: 10, 
+    });
+
+    doc.save(`${data.productName}.pdf`);
   };
 
   return (
@@ -38,9 +59,9 @@ const AdminProductCard = ({ data, fetchdata, onProductSelect, isSelected }) => {
         <p className='font-semibold'>
           {displayINRCurrency(data.sellingPrice)}
         </p>
-        <p>
+        {/* <p>
           {format(data.createdAt,'yyyy/MM/dd kk:mm:ss')}
-        </p>
+        </p> */}
       </div>
 
       <div className='absolute bottom-2 right-2 flex items-center gap-2'>
@@ -55,6 +76,13 @@ const AdminProductCard = ({ data, fetchdata, onProductSelect, isSelected }) => {
           onClick={() => setEditProduct(true)}
         >
           <MdModeEditOutline />
+        </div>
+
+        <div
+          className='p-2 bg-blue-100 hover:bg-blue-600 rounded-full hover:text-white cursor-pointer'
+          onClick={handleDownloadPDF}
+        >
+          <MdDownload />
         </div>
       </div>
 
