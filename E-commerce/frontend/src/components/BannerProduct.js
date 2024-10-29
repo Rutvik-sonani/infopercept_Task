@@ -90,7 +90,7 @@ const BannerProduct = () => {
                                 <img src={imageURL} className='w-full h-full object-cover' alt={`Mobile banner ${index + 1}`} />
                             </div>
                         ))
-                    }
+                    }   
                 </div>
             </div>
         </div>

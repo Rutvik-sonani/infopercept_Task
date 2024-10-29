@@ -1,0 +1,26 @@
+const mongoose = require("mongoose");
+
+const userSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  pic: {
+    type: String,
+    default:
+      "https://iconarchive.com/download/i111970/Flat-Design/User-Profile-3.ico",
+  },
+});
+
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;
